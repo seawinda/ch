@@ -16,7 +16,6 @@ $(document).ready(function() {
             appendArrows: "#" + carouselId + ' .pager',
             prevArrow: '<button type="button" class="pager-arrow left"></button>',
             nextArrow: '<button type="button" class="pager-arrow right"></button>',
-            /*dots: true,*/
             initArrowEvents: true,
             responsive: [
                 {
@@ -40,10 +39,6 @@ $(document).ready(function() {
         arrows: true,
         centerMode: false,
         slidesToShow: 1,
-        /*speed: 1000,
-        fade: true,
-        cssEase: 'linear',*/
-        //initialSlide: 8,
         appendArrows: '.sections__pager',
         prevArrow: '<button type="button" class="pager-arrow left"></button>',
         nextArrow: '<button type="button" class="pager-arrow right"></button>',
@@ -82,10 +77,8 @@ $(document).ready(function() {
         }
 
         if (sectionsActivePagesArrowLeft.hasClass('slick-disabled') && (!(sectionsActiveSectionsArrowLeft.hasClass('slick-disabled'))) || (sectionsActivePagesArrowLeft.length <= 0 && (!(sectionsActiveSectionsArrowLeft.hasClass('slick-disabled'))))) {
-            //console.log('left show');
             sectionsActiveSectionsArrowLeft.show();
         } else {
-            //console.log('left hide');
             sectionsActiveSectionsArrowLeft.hide();
         }
     });
@@ -115,22 +108,23 @@ $(document).ready(function() {
     $('.pager-arrow.right').bind('classChanged', function () {
         var sectionsActivePagesArrowRight = $('.sections__item.slick-active .pages .pager-arrow.right');
         var sectionsActiveSectionsArrowRight = $('.sections__pager .pager-arrow.right');
+        var sectionsActiveSectionsArrowLeft = $('.sections__pager .pager-arrow.left');
         if ((sectionsActivePagesArrowRight.hasClass('slick-disabled')) || (sectionsActivePagesArrowRight.length <= 0)) {
-            $('.sections__pager .pager-arrow.right').show();
+            sectionsActiveSectionsArrowRight.show();
         } else {
-            //console.log('right hide');
-            $('.sections__pager .pager-arrow.right').hide();
+            sectionsActiveSectionsArrowRight.hide();
         }
         if($('.sections__item.slick-active .first-screen').length>0) {
-            $('.sections__pager .pager-arrow.right').css('width', '100%');
-            $('.sections__pager .pager-arrow.left').css('width', '0');
+            sectionsActiveSectionsArrowRight.css('width', '100%');
+            sectionsActiveSectionsArrowLeft.css('width', '0');
         } else {
-            $('.sections__pager .pager-arrow.right').css('width', '15%');
-            $('.sections__pager .pager-arrow.left').css('width', '15%');
+            sectionsActiveSectionsArrowRight.css('width', '15%');
+            sectionsActiveSectionsArrowLeft.css('width', '15%');
         }
     });
     $('.pager-arrow.left').bind('classChanged', function () {
-        if ($('.sections__item.slick-active .pages .pager-arrow.left').hasClass('slick-disabled') || $('.sections__item.slick-active .pages .pager-arrow.left').length <= 0 ) {
+        var sectionsActiveSectionArrowLeft = $('.sections__item.slick-active .pages .pager-arrow.left');
+        if (sectionsActiveSectionArrowLeft.hasClass('slick-disabled') || sectionsActiveSectionArrowLeft.length <= 0 ) {
             $('.sections__pager .pager-arrow.left').show();
         } else {
             $('.sections__pager .pager-arrow.left').hide();
@@ -141,6 +135,7 @@ $(document).ready(function() {
 
     /*logo*/
     $('.sections__item').bind('classChanged', function () {
+        var sectionsItem = $('.sections__item');
         if ($(this).hasClass('slick-active') && $(this).hasClass('js-title')) {
             $('body').addClass('background-dark').addClass('mobile-burger');
         } else {
@@ -154,7 +149,7 @@ $(document).ready(function() {
             $('body').addClass('hide-button')
                 .removeClass('hide-link');     }
 
-        var sections = $('.sections__item').length;
+        var sections = sectionsItem.length;
 
         if ($('.theend').hasClass('slick-active')) {
             $('.sections__item.slick-active .pages .pager-arrow.right').hide();
@@ -253,10 +248,6 @@ $(document).ready(function() {
         ]
     });
 
-    /*burger*/
-    /*$('.hamburger').click(function () {
-
-    });*/
 
     /*Modals*/
     var modal;
@@ -267,12 +258,11 @@ $(document).ready(function() {
     var topPos = "null";
     var modaltoggle = function (modal) {
         if (!modal.hasClass('active')) {
-
+            var pageBody = $('body');
             var offset = $(window).scrollTop();
             var heightModal = modal.find('.modal-guts').eq(0).outerHeight();
             modal.css({
                 'margin-top': offset + 'px'
-                //'height': heightModal+'px'
             });
 
 
@@ -280,7 +270,7 @@ $(document).ready(function() {
 
             modalOverlay.addClass('active');
             modal.addClass('active');
-            $('body').css('padding-right', returnScrollWidth());
+            pageBody.css('padding-right', returnScrollWidth());
             $('body, html').css('overflow', 'hidden');
             modal.find('.modal-guts').eq(0).focus();
             $(window).scrollTop(topPos);
@@ -305,11 +295,11 @@ $(document).ready(function() {
             }
             $('.hamburger').addClass('is-active');
             if(!($('.sections__item.slick-active').hasClass('js-title'))) {
-                $('body').toggleClass('background-dark');
+                pageBody.toggleClass('background-dark');
             } else {
-                $('body').toggleClass('mobile-burger');
+                pageBody.toggleClass('mobile-burger');
             }
-            $('body').toggleClass('modal-mode');
+            pageBody.toggleClass('modal-mode');
 
         }
         else {
@@ -318,6 +308,7 @@ $(document).ready(function() {
         }
     };
     var modalclose = function () {
+        var pageBody = $('body');
         var modal=$('.modal.active');
         modal.removeClass('active');
         if(modal.hasClass('js-modal-video')) {
@@ -331,22 +322,21 @@ $(document).ready(function() {
             });
         }
         modalOverlay.removeClass('active');
-        $('body').css('padding-right', 0);
+        pageBody.css('padding-right', 0);
         $('html, body').css('overflow', 'visible');
         $(window).scrollTop(topPos);
         modal.css({
             'margin': 'inherit'
-            //'height': 'auto'
         });
         $('.hamburger').removeClass('is-active');
         if(!($('.sections__item.slick-active').hasClass('js-title'))) {
-            $('body').removeClass('background-dark')
+            pageBody.removeClass('background-dark')
         } else {
-            $('body').addClass('mobile-burger');
+            pageBody.addClass('mobile-burger');
         }
 
 
-        $('body').removeClass('modal-mode');
+        pageBody.removeClass('modal-mode');
     };
     closeButton.click(function (e) {
         e.preventDefault();
@@ -393,16 +383,19 @@ $(document).ready(function() {
         var link = $(this);
         var slideno = link.data('slide');
         var sectionno = link.data('section');
+        var sectionsItem = $('.sections__item');
+        var sectionsItems = $('.sections__items');
+        var sectiosActivePageItem = $('.sections__item.slick-active .pages__item');
         var pages;
         if($('.hamburger').hasClass('is-active')) {
             modalclose();
         }
         for (var i=0; i<parseInt(sectionno-1); i++) {
-            pages = $('.sections__item').eq(i).find('.pages__items').find('.pages__item').length;
-            $('.sections__item').eq(i).find('.pages__items').slick('slickGoTo', pages-1, true);
+            pages = sectionsItem.eq(i).find('.pages__items').find('.pages__item').length;
+            sectionsItem.eq(i).find('.pages__items').slick('slickGoTo', pages-1, true);
         }
-        for (var j=parseInt(sectionno); j<$('.sections__item').length; j++) {
-            $('.sections__item').eq(j).find('.pages__items').slick('slickGoTo', 0, true);
+        for (var j=parseInt(sectionno); j<sectionsItem.length; j++) {
+            sectionsItem.eq(j).find('.pages__items').slick('slickGoTo', 0, true);
         }
         var scroll= true;
         if(link.attr('data-scroll')) {
@@ -410,12 +403,11 @@ $(document).ready(function() {
             scroll = link.data('scroll');
         }
 
-        $('.sections__items').slick('slickGoTo', sectionno - 1, scroll);
+        sectionsItems.slick('slickGoTo', sectionno - 1, scroll);
         $('.sections__item.slick-active .pages__items').slick('slickGoTo', slideno - 1, scroll);
-        $('.sections__items').slick('slickSetOption', 'swipe', true);
-        console.log((slideno+1)+' '+$('.sections__item.slick-active .pages__item').length)
-        if((slideno)<$('.sections__item.slick-active .pages__item').length) {
-            $('.sections__items').slick('slickSetOption', 'swipe', false);
+        sectionsItems.slick('slickSetOption', 'swipe', true);
+        if((slideno)<sectiosActivePageItem.length) {
+            sectionsItems.slick('slickSetOption', 'swipe', false);
         }
     });
 
@@ -450,12 +442,13 @@ $(document).ready(function() {
 
     var initSwipe = $('.sections__items').on('swipe', function(event, slick, direction) {
         var sections = $('.sections__items');
+        var sectionsItem = $('.sections__item');
         sections.slick('slickSetOption', 'swipe', true);
 
         var currentIndex = $(this).slick('slickCurrentSlide');
-        var pagesCount=$('.sections__item').eq(currentIndex).find('.pages__item').length;
+        var pagesCount=sectionsItem.eq(currentIndex).find('.pages__item').length;
 
-        var pages =$('.sections__item').eq(currentIndex).find('.pages__items');
+        var pages =sectionsItem.eq(currentIndex).find('.pages__items');
 
         if (pagesCount>1) {
             sections.slick('slickSetOption', 'swipe', false);

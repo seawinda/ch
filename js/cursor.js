@@ -19,30 +19,6 @@ var clicks = {
     }
 };
 
-/*(function() {
-        var lastTime = 0;
-        var vendors = ["webkit", "moz"];
-        for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-            window.requestAnimationFrame = window[vendors[x] + "RequestAnimationFrame"];
-            window.cancelAnimationFrame = window[vendors[x] + "CancelAnimationFrame"] || window[vendors[x] + "CancelRequestAnimationFrame"]
-        }
-        if (!window.requestAnimationFrame)
-            window.requestAnimationFrame = function(callback) {
-                var currTime = (new Date).getTime();
-                var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-                var id = window.setTimeout(function() {
-                    callback(currTime + timeToCall)
-                }, timeToCall);
-                lastTime = currTime + timeToCall;
-                return id
-            }
-            ;
-        if (!window.cancelAnimationFrame)
-            window.cancelAnimationFrame = function(id) {
-                clearTimeout(id)
-            }
-    }
-)();*/
 function get_scrollbar_width() {
     var $helperDiv = $("<div />");
     $("body").append($helperDiv.width(100).css("overflow", "scroll"));
@@ -54,35 +30,13 @@ function getWinProps() {
     winH = $(window).height();
     get_scrollbar_width()
 }
-/*function elementInViewport(el, base) {
-    if (!base)
-        base = document;
-    var top = el.offsetTop;
-    var height = el.offsetHeight;
-    while (el.offsetParent && el.offsetParent != base) {
-        el = el.offsetParent;
-        top += el.offsetTop
-    }
-    return base.scrollTop + window.innerHeight >= top && base.scrollTop <= top + height
-}*/
-
-/*function keepOutline() {
-    if (is_touch)
-        return;
-    $(document).on("mousedown", "input", function(e) {
-        $(this).addClass("no-outline")
-    })
-}*/
 
 
 function initialize() {
-    /*console.log("Initialisierung startet");*/
-
     $body.addClass("hidden").addClass("animate");
     $("html").removeClass("no-fouc");
     getWinProps();
     $(window).on("load resize orientationchange", getWinProps);
-    /*console.log(is_touch);*/
     if (!is_touch) {
 
         /*keepOutline();*/
@@ -91,15 +45,19 @@ function initialize() {
                 var result;
 
                 var _p = $('body');
+                var sectionsPagerArrowLeft = $(".sections__pager .pager-arrow.left");
+                var sectionsPagerArrowRight = $(".sections__pager .pager-arrow.right");
+                var sectionsActiveArrowLeft = $(".sections__item.slick-active .pages .pager-arrow.left");
+                var sectionsActiveArrowRight = $(".sections__item.slick-active .pages .pager-arrow.right");
                 if (_p.content_visible && scrollbar_width && x >= w - scrollbar_width) {
                     result = "right"
                 } else if (x < w * .15) {
-                    if ($(".sections__pager .pager-arrow.left").hasClass("slick-disabled")&&$(".sections__item.slick-active .pages .pager-arrow.left").hasClass("slick-disabled")||($(".sections__pager .pager-arrow.left").hasClass("slick-disabled")&&$(".sections__item.slick-active .pages .pager-arrow.left").length<=0))
+                    if (sectionsPagerArrowLeft.hasClass("slick-disabled")&&sectionsActiveArrowLeft.hasClass("slick-disabled")||(sectionsPagerArrowLeft.hasClass("slick-disabled")&&sectionsActiveArrowLeft.length<=0))
                         result = "right";
                     else
                         result = "left"
                 } else if (x > w * .85) {
-                    if (($(".sections__pager .pager-arrow.right").hasClass("slick-disabled")&&$(".sections__item.slick-active .pages .pager-arrow.right").hasClass("slick-disabled"))||($(".sections__pager .pager-arrow.right").hasClass("slick-disabled")&&$(".sections__item.slick-active .pages .pager-arrow.right").length<=0))
+                    if ((sectionsPagerArrowRight.hasClass("slick-disabled")&&sectionsActiveArrowRight.hasClass("slick-disabled"))||(sectionsPagerArrowRight.hasClass("slick-disabled")&&sectionsActiveArrowRight.length<=0))
                         result = "left";
                     else
                         result = "right"
@@ -203,11 +161,6 @@ function Cursor(selector, type, get_class, events) {
                 , w = $ele.width()
                 , h = $ele.height();
             self.klass = get_class(self, e.pageX - x, e.pageY - y, w, h, $ele)
-            /*clearTimeout(hoverTimeout);
-            hoverTimeout = setTimeout(function() {
-                self.klass = get_class(self, e.pageX - x, e.pageY - y, w, h, $ele)
-            }, 50)*/
-
         }
         deferred.update(self.klass, e.pageX, e.pageY)
     });

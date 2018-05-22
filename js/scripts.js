@@ -3,23 +3,51 @@ $(document).ready(function() {
 
     /* slick slider*/
 
-    $('.pages').each(function (idx, item) {
-        var carouselId = "carousel" + idx;
-        this.id = carouselId;
-        $(this).find('.pages__items').slick({
+
+
+    var is_touch = !!("ontouchstart"in window);
+    if (!is_touch) {
+        $('.pages').each(function (idx, item) {
+            var carouselId = "carousel" + idx;
+            this.id = carouselId;
+            $(this).find('.pages__items').slick({
+                infinite: false,
+                arrows: true,
+                centerMode: false,
+                variableWidth: true,
+                slidesToShow: 1,
+                slide: "#" + carouselId + " .pages__item",
+                appendArrows: "#" + carouselId + ' .pager',
+                prevArrow: '<button type="button" class="pager-arrow left"></button>',
+                nextArrow: '<button type="button" class="pager-arrow right"></button>',
+                initArrowEvents: true,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            arrows: false
+                        }
+                    },
+                    {
+                        breakpoint: 680,
+                        settings: {
+                            arrows: false
+                        }
+                    }
+                ]
+            });
+        });
+        $('.sections__items').slick({
             infinite: false,
             arrows: true,
             centerMode: false,
-            variableWidth: true,
             slidesToShow: 1,
-            slide: "#" + carouselId + " .pages__item",
-            appendArrows: "#" + carouselId + ' .pager',
+            appendArrows: '.sections__pager',
             prevArrow: '<button type="button" class="pager-arrow left"></button>',
             nextArrow: '<button type="button" class="pager-arrow right"></button>',
-            initArrowEvents: true,
             responsive: [
                 {
-                    breakpoint: 1024,
+                    breakpoint: 1025,
                     settings: {
                         arrows: false
                     }
@@ -31,57 +59,52 @@ $(document).ready(function() {
                     }
                 }
             ]
-        });
-    });
+        }).closest('.sections').find('.sections__pager .pager-arrow.right').each(function () {
+            $(this).hide();
+            var sectionsActivePagesArrowRight = $('.sections__item.slick-active .pages .pager-arrow.right');
+            var sectionsActiveSectionsArrowRight = $('.sections__pager .pager-arrow.right');
+            var sectionsActivePagesArrowLeft = $('.sections__item.slick-active .pages .pager-arrow.left');
+            var sectionsActiveSectionsArrowLeft = $('.sections__pager .pager-arrow.left');
 
-    $('.sections__items').slick({
-        infinite: false,
-        arrows: true,
-        centerMode: false,
-        slidesToShow: 1,
-        appendArrows: '.sections__pager',
-        prevArrow: '<button type="button" class="pager-arrow left"></button>',
-        nextArrow: '<button type="button" class="pager-arrow right"></button>',
-        responsive: [
-            {
-                breakpoint: 1025,
-                settings: {
-                    arrows: false
-                }
-            },
-            {
-                breakpoint: 680,
-                settings: {
-                    arrows: false
-                }
+            if (sectionsActivePagesArrowRight.hasClass('slick-disabled') || sectionsActivePagesArrowRight.length <= 0) {
+                sectionsActiveSectionsArrowRight.show();
+            } else {
+                sectionsActiveSectionsArrowRight.hide();
             }
-        ]
-    }).closest('.sections').find('.sections__pager .pager-arrow.right').each(function () {
-        $(this).hide();
-        var sectionsActivePagesArrowRight = $('.sections__item.slick-active .pages .pager-arrow.right');
-        var sectionsActiveSectionsArrowRight = $('.sections__pager .pager-arrow.right');
-        var sectionsActivePagesArrowLeft = $('.sections__item.slick-active .pages .pager-arrow.left');
-        var sectionsActiveSectionsArrowLeft = $('.sections__pager .pager-arrow.left');
+            if ($('.sections__item.slick-active .first-screen').length > 0) {
+                sectionsActiveSectionsArrowRight.css('width', '100%');
+                sectionsActiveSectionsArrowLeft.css('width', '0');
+            } else {
+                sectionsActiveSectionsArrowRight.css('width', '15%');
+                sectionsActiveSectionsArrowLeft.css('width', '15%');
+            }
 
-        if (sectionsActivePagesArrowRight.hasClass('slick-disabled') || sectionsActivePagesArrowRight.length <= 0) {
-            sectionsActiveSectionsArrowRight.show();
-        } else {
-            sectionsActiveSectionsArrowRight.hide();
-        }
-        if($('.sections__item.slick-active .first-screen').length>0) {
-            sectionsActiveSectionsArrowRight.css('width', '100%');
-            sectionsActiveSectionsArrowLeft.css('width', '0');
-        } else {
-            sectionsActiveSectionsArrowRight.css('width', '15%');
-            sectionsActiveSectionsArrowLeft.css('width', '15%');
-        }
-
-        if (sectionsActivePagesArrowLeft.hasClass('slick-disabled') && (!(sectionsActiveSectionsArrowLeft.hasClass('slick-disabled'))) || (sectionsActivePagesArrowLeft.length <= 0 && (!(sectionsActiveSectionsArrowLeft.hasClass('slick-disabled'))))) {
-            sectionsActiveSectionsArrowLeft.show();
-        } else {
-            sectionsActiveSectionsArrowLeft.hide();
-        }
-    });
+            if (sectionsActivePagesArrowLeft.hasClass('slick-disabled') && (!(sectionsActiveSectionsArrowLeft.hasClass('slick-disabled'))) || (sectionsActivePagesArrowLeft.length <= 0 && (!(sectionsActiveSectionsArrowLeft.hasClass('slick-disabled'))))) {
+                sectionsActiveSectionsArrowLeft.show();
+            } else {
+                sectionsActiveSectionsArrowLeft.hide();
+            }
+        });
+    } else {
+        $('.pages').each(function (idx, item) {
+            var carouselId = "carousel" + idx;
+            this.id = carouselId;
+            $(this).find('.pages__items').slick({
+                infinite: false,
+                arrows: false,
+                centerMode: false,
+                variableWidth: true,
+                slidesToShow: 1,
+                slide: "#" + carouselId + " .pages__item"
+            });
+        });
+        $('.sections__items').slick({
+            infinite: false,
+            arrows: false,
+            centerMode: false,
+            slidesToShow: 1
+        })
+    }
 
 
     var originalAddClassMethod = $.fn.addClass;

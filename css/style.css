@@ -2870,7 +2870,8 @@ audio {
     .innovations-page2__image img {
       width: 253px;
       margin-right: 0;
-      left: 0; } }
+      left: 0;
+      display: block; } }
 
 /* theend */
 .theend a {

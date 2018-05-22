@@ -1,0 +1,53 @@
+/*** --- Document params --- ***/
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  font: normal 16px/1.5 'PTSans', Verdana, Arial, Helvetica, sans-serif;
+  color: #020202;
+  font-weight: 400;
+  background-color: #ffffff; }
+
+.pages {
+  position: relative;
+  width: 100vw; }
+  .pages__item {
+    height: 100vh;
+    width: 100vw; }
+  .pages .pager-arrow:after {
+    z-index: 100; }
+
+.pager {
+  position: absolute;
+  top: 0;
+  width: 100%; }
+  .pager .pager-arrow:after {
+    content: '';
+    width: 10%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out; }
+  .pager .pager-arrow.right:after {
+    right: 0;
+    left: auto; }
+
+.sections__pager .pager-arrow {
+  display: none; }
+
+.pager-arrow.slick-disabled {
+  display: none !important; }
+
+.slick-dots {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+/*# sourceMappingURL=sections.css.map */

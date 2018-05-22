@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="535239e4-06c6-470e-8e1b-8f7c912df1f4" name="ch.Mailfit" url="http://a138004.ftp.mchost.ru">
+        <fileTransfer host="a138004.ftp.mchost.ru" port="21" rootFolder="/subdomains/ch/httpdocs">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

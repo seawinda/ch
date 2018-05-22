@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="ch.Mailfit">
+    <serverData>
+      <paths name="ch.Mailfit">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/subdomains/ch/httpdocs" local="$PROJECT_DIR$" web="/subdomains/ch/httpdocs" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

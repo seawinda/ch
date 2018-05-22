@@ -59,6 +59,7 @@
 $small: 640px;
 $large: 1024px;
 
+
 @mixin respond-to($media) {
   @if $media == handhelds {
     @media only screen and (max-width: $small) { @content; }

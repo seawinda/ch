@@ -825,16 +825,17 @@ input {
   }
   &__text {
     padding-right: 27px;
-    margin-top: 200px;
+    margin-top: 21vh;
+    @media (max-width: 200px) {
+      margin-top: 15vh;
+    }
     @include respond-to(medium-screens) {
       padding-right: 11px;
-      margin-top: 21vw;
     }
     @include respond-to(handhelds) {
       font-size: 14px;
       width: 100%;
       padding-right: 0;
-      margin-top: 15vh;
     }
     p {
       margin-bottom: 20px;
@@ -2070,8 +2071,8 @@ $choose-color: #4072f0;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  @include respond-to(handhelds) {
-    flex-wrap: wrap;
+  @media (max-width: 768px) {
+    display: block;
   }
   &__item {
     -webkit-box-flex: 0;
@@ -2090,8 +2091,9 @@ $choose-color: #4072f0;
       background-size: contain;
       max-height: 416px;
     }
-    @include respond-to(handhelds) {
+    @media (max-width: 768px) {
       width: 100%;
+      max-width: 280px;
     }
   }
   &__item:nth-child(2n) {
@@ -2105,7 +2107,7 @@ $choose-color: #4072f0;
       background-size: contain;
       max-height: 459px;
     }
-    @include respond-to(handhelds) {
+    @media (max-width: 768px) {
       width: 100%;
     }
   }
@@ -2168,7 +2170,7 @@ $choose-color: #4072f0;
     @include respond-to(medium-screens) {
       font-size: 25px;
     }
-    @include respond-to(handhelds) { }
+    @media (max-width: 768px){ }
   }
   &__item:nth-child(2n) &__price {
     font-size: 28px;
@@ -2256,7 +2258,7 @@ $choose-color: #4072f0;
   }
 }
 
-@include respond-to(handhelds) {
+@media (max-width: 768px) {
   .choose {
     .js-collapse {
       background-image: url("../images/choose_bg1-mob-collaps.png");
@@ -2356,6 +2358,10 @@ $choose-color: #4072f0;
     &.choose__item:nth-child(2n) .choose__list li {
       font-size: 14px;
     }
+    .mobile {
+      display: block;
+    }
+
   }
 }
 
@@ -2623,7 +2629,7 @@ $selflearning-color: #00c3f3;
     background-position: 63px 0;
     @include respond-to(medium-screens) {
       width: 39%;
-      margin-top: 30%;
+      margin-top: 30vh;
       background-size: contain;
       background-position: 0 0;
     }

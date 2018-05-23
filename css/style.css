@@ -719,17 +719,18 @@ input {
         width: 49%; } }
   .page__text {
     padding-right: 27px;
-    margin-top: 200px; }
+    margin-top: 21vh; }
+    @media (max-width: 200px) {
+      .page__text {
+        margin-top: 15vh; } }
     @media only screen and (max-width: 1024px) {
       .page__text {
-        padding-right: 11px;
-        margin-top: 21vw; } }
+        padding-right: 11px; } }
     @media only screen and (max-width: 640px) {
       .page__text {
         font-size: 14px;
         width: 100%;
-        padding-right: 0;
-        margin-top: 15vh; } }
+        padding-right: 0; } }
     .page__text p {
       margin-bottom: 20px; }
       @media only screen and (max-width: 640px) {
@@ -1770,9 +1771,9 @@ audio {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between; }
-  @media only screen and (max-width: 640px) {
+  @media (max-width: 768px) {
     .choose {
-      flex-wrap: wrap; } }
+      display: block; } }
   .choose__item {
     -webkit-box-flex: 0;
     -ms-flex: none;
@@ -1790,9 +1791,10 @@ audio {
         width: 30%;
         background-size: contain;
         max-height: 416px; } }
-    @media only screen and (max-width: 640px) {
+    @media (max-width: 768px) {
       .choose__item {
-        width: 100%; } }
+        width: 100%;
+        max-width: 280px; } }
   .choose__item:nth-child(2n) {
     background-image: url("../images/choose_bg2.png");
     background-size: 293px;
@@ -1804,7 +1806,7 @@ audio {
         width: 33%;
         background-size: contain;
         max-height: 459px; } }
-    @media only screen and (max-width: 640px) {
+    @media (max-width: 768px) {
       .choose__item:nth-child(2n) {
         width: 100%; } }
   .choose__title {
@@ -1922,7 +1924,7 @@ audio {
     width: 82px;
     left: -5px; }
 
-@media only screen and (max-width: 640px) {
+@media (max-width: 768px) {
   .choose {
     /*&__item:nth-child(2n) &__title {
       font-size: 20px;
@@ -1999,7 +2001,9 @@ audio {
       .choose .js-expand .choose__buy {
         display: flex; }
     .choose.choose__item:nth-child(2n) .choose__list li {
-      font-size: 14px; } }
+      font-size: 14px; }
+    .choose .mobile {
+      display: block; } }
 /* howbecome-page6 */
 .howbecome-page6 .wrapper {
   max-width: 1100px;
@@ -2228,7 +2232,7 @@ audio {
   @media only screen and (max-width: 1024px) {
     .selflearning-page2__books {
       width: 39%;
-      margin-top: 30%;
+      margin-top: 30;
       background-size: contain;
       background-position: 0 0; } }
   @media only screen and (max-width: 640px) {

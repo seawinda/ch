@@ -49,6 +49,8 @@ function initialize() {
                 var sectionsPagerArrowRight = $(".sections__pager .pager-arrow.right");
                 var sectionsActiveArrowLeft = $(".sections__item.slick-active .pages .pager-arrow.left");
                 var sectionsActiveArrowRight = $(".sections__item.slick-active .pages .pager-arrow.right");
+                var firstScreen = $('.sections__item.slick-active .first-screen');
+                var modalWrapper = $('.modal-wrapper');
                 if (_p.content_visible && scrollbar_width && x >= w - scrollbar_width) {
                     result = "right"
                 } else if (x < w * .15) {
@@ -65,10 +67,10 @@ function initialize() {
                     result = "down"
 
                 }
-                if ($('.sections__item.slick-active .first-screen').length>0) {
+                if (firstScreen.length>0) {
                     result = "right"
                 }
-                if($('.modal-wrapper').css('opacity')==1) {
+                if(modalWrapper.css('opacity')==1) {
                     result = "down"
                 }
 

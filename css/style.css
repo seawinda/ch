@@ -593,6 +593,16 @@ input {
     display: block;
     max-width: 100%;
     margin-left: 95px; }
+    @media only screen and (max-width: 1024px) {
+      .main-title__img {
+        width: 677px;
+        margin-left: 45px; } }
+    @media only screen and (max-width: 640px) {
+      .main-title__img {
+        margin-left: 0; } }
+    @media only screen and (max-width: 640px) {
+      .main-title__img {
+        margin-left: 0; } }
     .main-title__img.desktop {
       display: block; }
       @media only screen and (max-width: 1024px) {
@@ -2232,7 +2242,7 @@ audio {
   @media only screen and (max-width: 1024px) {
     .selflearning-page2__books {
       width: 39%;
-      margin-top: 30;
+      margin-top: 30vh;
       background-size: contain;
       background-position: 0 0; } }
   @media only screen and (max-width: 640px) {

@@ -689,6 +689,12 @@ input {
     display: block;
     max-width: 100%;
     margin-left: 95px;
+    @include respond-to(medium-screens) {
+      width: 677px;
+      margin-left: 45px;
+    }
+    @include respond-to(handhelds) {margin-left: 0;}
+    /*@include respond-to(handhelds) {margin-left: 0;}
     &.desktop {
       display: block;
       @include respond-to(medium-screens) {display: none;}
@@ -700,7 +706,7 @@ input {
       margin-left: 45px;
       @include respond-to(medium-screens) {display: block;}
       @include respond-to(handhelds) {margin-left: 0;}
-    }
+    }*/
   }
   &__descr {
     margin-top: 25px;

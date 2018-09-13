@@ -592,7 +592,20 @@ input {
     height: auto;
     display: block;
     max-width: 100%;
-    margin-left: 95px; }
+    margin-left: 95px;
+    /*@include respond-to(handhelds) {margin-left: 0;}
+    &.desktop {
+      display: block;
+      @include respond-to(medium-screens) {display: none;}
+      @include respond-to(handhelds) { }
+    }
+    &.tablet {
+      display: none;
+      width: 677px;
+      margin-left: 45px;
+      @include respond-to(medium-screens) {display: block;}
+      @include respond-to(handhelds) {margin-left: 0;}
+    }*/ }
     @media only screen and (max-width: 1024px) {
       .main-title__img {
         width: 677px;
@@ -600,24 +613,6 @@ input {
     @media only screen and (max-width: 640px) {
       .main-title__img {
         margin-left: 0; } }
-    @media only screen and (max-width: 640px) {
-      .main-title__img {
-        margin-left: 0; } }
-    .main-title__img.desktop {
-      display: block; }
-      @media only screen and (max-width: 1024px) {
-        .main-title__img.desktop {
-          display: none; } }
-    .main-title__img.tablet {
-      display: none;
-      width: 677px;
-      margin-left: 45px; }
-      @media only screen and (max-width: 1024px) {
-        .main-title__img.tablet {
-          display: block; } }
-      @media only screen and (max-width: 640px) {
-        .main-title__img.tablet {
-          margin-left: 0; } }
   .main-title__descr {
     margin-top: 25px;
     font-size: 22px;
@@ -1280,7 +1275,6 @@ audio {
   padding: 0 25px 0 0;
   height: 64px;
   background-color: transparent;
-  background-image: url("../images/audio_bg.png");
   background-repeat: no-repeat;
   background-position: 100% 100%;
   background-size: 450px; }
